@@ -50,7 +50,7 @@ const defaultCarousel = {
 const defaultAboutUs = {
   title: "About Us",
   description: [
-    "Bhairava Bhandara is a celebration of our rich cultural heritage through music, dance, and theatrical performances. For over a decade, we have been bringing together talented artists from across the country to showcase the beauty and diversity of traditional art forms.",
+    "History isn’t just written, it lives in forts, temples, and stories. Bhairavacha Bhandara takes you on a journey through the bravery and legacy of Chhatrapati Shivaji Maharaj, bringing forgotten tales to life.",
     "Led by Ketan Kailas Puri, the show explores ancient temples, sculptures, and the hidden beauty of India’s heritage.",
     "Bhairavacha Bhandara isn’t just a show, it’s an experience where history comes alive!",
   ],
