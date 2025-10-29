@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 20, 0, 0;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.aurora-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.carousel-container {
+  position: relative;
+  margin: 2rem auto;
+  max-width: 1200px;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.carousel-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  padding: 4px;
+  background: linear-gradient(45deg, #ff3232, #3a29ff, #ff94b4);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.nav-link {
+  @apply relative px-4 py-2 rounded-full transition-all duration-300 hover:bg-white/10;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff3232, #ff94b4);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 70%;
+}
+
+.event-card {
+  @apply bg-black/60 backdrop-blur-sm rounded-xl overflow-hidden transition-all duration-300 hover:transform hover:scale-105 border border-red-500/30 hover:border-red-500/60 hover:shadow-lg hover:shadow-red-500/20;
+}
+
+.event-card:hover {
+  box-shadow: 0 0 20px rgba(255, 50, 50, 0.5);
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-red-600 to-red-800 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 hover:from-red-700 hover:to-red-900 hover:shadow-lg hover:shadow-red-500/30;
+}
+
+.btn-secondary {
+  @apply bg-transparent border border-red-500 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 hover:bg-red-500/20 hover:shadow-lg hover:shadow-red-500/20;
+}
+
+.section-title {
+  @apply text-3xl md:text-4xl font-bold mb-8 relative inline-block;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #ff3232, #ff94b4);
+}
+
+.footer {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  backdrop-filter: blur(10px);
+}
+
+.mobile-menu {
+  @apply fixed top-0 left-0 w-full h-screen bg-black/95 backdrop-blur-md z-50 flex flex-col items-center justify-center gap-8 transform transition-transform duration-300;
+}
+
+/* Added smooth transitions and improved hover effects for better UI polish */
+* {
+  scroll-behavior: smooth;
+}
+
+button,
+a {
+  @apply transition-all duration-300;
+}
+
+/* Improved line clamping for better text overflow handling */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
