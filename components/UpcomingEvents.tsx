@@ -1,18 +1,37 @@
 "use client"
 
-import type React from "react"
+import React, { useEffect, useState } from "react"
 import { Calendar, MapPin, Clock } from "lucide-react"
 import { events } from "@/lib/data"
 
 const UpcomingEvents = () => {
+  const [redirecting, setRedirecting] = useState(false)
+
   // Filter only active events
-  const activeEvents = events.filter((event) => event.status !== "cancelled" && event.status !== "sold-out")
+  const activeEvents = events.filter(
+    (event) => event.status !== "cancelled" && event.status !== "sold-out"
+  )
 
-  const handleBuyTickets = (e: React.MouseEvent<HTMLAnchorElement>, id: number) => {
+  const handleBuyTickets = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
+    setRedirecting(true)
 
-    const bookingLink = localStorage.getItem("bookingLink") || "https://in.bookmyshow.com/plays/bhairavacha-bhandara/ET00467632"
-    window.open(bookingLink, "_blank")
+    // Redirect after short delay to avoid Cloudflare bot detection
+    setTimeout(() => {
+      window.location.href =
+        "https://in.bookmyshow.com/plays/bhairavacha-bhandara/ET00467632"
+    }, 800)
+  }
+
+  // If redirecting, show simple full-screen message
+  if (redirecting) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
+        <p className="text-lg animate-pulse mt-10">
+          Redirecting to BookMyShow... 🎟️
+        </p>
+      </div>
+    )
   }
 
   return (
@@ -38,14 +57,18 @@ const UpcomingEvents = () => {
                   {/* Sold Out Overlay */}
                   {event.status === "sold-out" && (
                     <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
-                      <span className="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold">SOLD OUT</span>
+                      <span className="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold">
+                        SOLD OUT
+                      </span>
                     </div>
                   )}
                 </div>
 
                 {/* Content Container */}
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-3 line-clamp-2 text-white">{event.title}</h3>
+                  <h3 className="text-xl font-bold mb-3 line-clamp-2 text-white">
+                    {event.title}
+                  </h3>
 
                   {/* Event Details */}
                   <div className="space-y-2 mb-4">
@@ -64,13 +87,15 @@ const UpcomingEvents = () => {
                   </div>
 
                   {/* Description */}
-                  <p className="text-gray-300 mb-6 text-sm line-clamp-3">{event.description}</p>
+                  <p className="text-gray-300 mb-6 text-sm line-clamp-3">
+                    {event.description}
+                  </p>
 
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-3">
                     <a
                       href="#"
-                      onClick={(e) => handleBuyTickets(e, event.id)}
+                      onClick={handleBuyTickets}
                       className="btn-primary text-center text-sm flex-1"
                     >
                       Buy Tickets
@@ -82,7 +107,9 @@ const UpcomingEvents = () => {
             ))
           ) : (
             <div className="col-span-full text-center py-12">
-              <p className="text-gray-400 text-lg">No upcoming shows at the moment. Check back soon!</p>
+              <p className="text-gray-400 text-lg">
+                No upcoming shows at the moment. Check back soon!
+              </p>
             </div>
           )}
         </div>
