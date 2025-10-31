@@ -24,15 +24,15 @@ const UpcomingEvents = () => {
   }
 
   // If redirecting, show simple full-screen message
-  if (redirecting) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
-        <p className="text-lg animate-pulse mt-10">
-          Redirecting to BookMyShow... 🎟️
-        </p>
-      </div>
-    )
-  }
+  // if (redirecting) {
+  //   return (
+  //     <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
+  //       <p className="text-lg animate-pulse mt-10">
+  //         Redirecting to BookMyShow... 🎟️
+  //       </p>
+  //     </div>
+  //   )
+  // }
 
   return (
     <section id="upcoming-shows" className="py-20 px-4">
