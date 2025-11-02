@@ -9,7 +9,7 @@ interface SiteContentState {
   carousel: {
     title: string
     subtitle: string
-    images: CarouselImage[]
+    images:   Image[]
   }
   aboutUs: {
     title: string
