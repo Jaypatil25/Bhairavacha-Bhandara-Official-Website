@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   }
 
   return {
-    title: `${event.title} - Bhairava Bhandara`,
+    title: `${event.title} - Bhairavacha Bhandara`,
     description: event.description.substring(0, 160),
   }
 }
