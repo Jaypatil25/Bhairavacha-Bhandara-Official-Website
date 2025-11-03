@@ -3,8 +3,10 @@ import { events } from "@/lib/data"
 
 export async function GET(request: Request) {
   try {
-    const { searchParams } = new URL(request.url)
-    const id = searchParams.get("id")
+  // Use request.nextUrl.searchParams (Next.js provides this during build/runtime).
+  // Avoid using `request.url` so the route can be safely invoked during static generation.
+  const searchParams = (request as any).nextUrl?.searchParams
+  const id = searchParams?.get("id")
 
     if (id) {
       const event = events.find((e) => e.id === Number.parseInt(id))

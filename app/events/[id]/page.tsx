@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 import { Calendar, Clock, MapPin, Users, Timer } from "lucide-react"
-import { useEventsStore } from "@/lib/store"
+import { events as eventsData } from "@/lib/data"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 
@@ -31,8 +31,8 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 export default function EventPage({ params }: { params: { id: string } }) {
   const id = Number.parseInt(params.id)
 
-  // Use client-side store for the actual rendering
-  const events = useEventsStore.getState().events
+  // Use server-side data for rendering (events are static/mock data)
+  const events = eventsData
   const event = events.find((e) => e.id === id)
 
   if (!event) {
